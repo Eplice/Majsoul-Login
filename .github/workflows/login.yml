@@ -1,12 +1,18 @@
 name: Majsoul-Login
+
 on:
   workflow_dispatch:
-  schedule: #5:00
-   - cron: '0 22 * * *'
+  schedule: # 5:00 北京时间（UTC 22:00）
+    - cron: '0 22 * * *'
+
+permissions:
+  contents: write  # ⬅️ 加这个才能 push log.txt
+
 jobs:
   login:
     name: Majsoul-Login
     runs-on: ubuntu-22.04
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -16,3 +22,11 @@ jobs:
 
       - name: Majsoul login
         run: python login.py ${{ secrets.EMAIL }} ${{ secrets.PASSWD }}
+
+      - name: Push log.txt
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add log.txt
+          git commit -m "Daily log update: $(date '+%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          git push
