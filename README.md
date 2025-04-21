@@ -1,5 +1,7 @@
 使用[GitHub Action](https://github.com/features/actions)+[Selenium](https://selenium.dev)实现雀魂每日5:00自动登录，完成“良好市民”成就
 
+自动生成每天完成的简略日志文件来填充push的内容 防止60天不仓库变动Workflow会自动关闭
+
 ![image](https://github.com/QuanQuan-CHO/Majsoul-Login/assets/90035785/9b7fac02-79cb-4e5c-b98d-7f1788d5996d)
 
 浏览器F12抓包太麻烦，所以干脆用了Selenium
