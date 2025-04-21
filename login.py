@@ -84,3 +84,21 @@ for i in range(acccounts):
     print('Complete!')
     sleep(5)
     driver.quit()
+
+from datetime import datetime
+import time
+
+start_time = time.time()
+success = False
+
+try:
+    # ... 登录逻辑 ...
+    success = True
+except Exception as e:
+    print("Login failed:", e)
+finally:
+    execution_time = time.time() - start_time
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    with open("log.txt", "a", encoding="utf-8") as log_file:
+        log_file.write(f"{current_time}-{'Success' if success else 'Failed'}-{execution_time:.2f}s\n")
+
